@@ -1,0 +1,38 @@
+<ion-view view-title="PJP Form">
+  <ion-content>
+		<div class="list">
+		<form ng-submit="submitForm()">
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Apakah Item Tersedia</span>
+		    <input type="text" placeholder="John">
+		  </label>
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Input 2</span>
+		    <input type="text" placeholder="Suhr">
+		  </label>
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Input 3</span>
+		    <input type="text" placeholder="john@suhr.com">
+		  </label>
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Select</span>
+		    <input type="text" placeholder="--pilih--" ng-model="selectInput" readonly
+		    	modal-select=""
+		    	options="pjpList" 
+		    	modal-title="Select a number" 
+		    	header-footer-class="bar-positive">
+
+		     <button class="button button-energized" modal-select="" ng-model="someOtherModel" options="longList" modal-title="Select a number" header-footer-class="bar-positive">
+            Select it
+            <div class="option">
+              {{option}}
+            </div>
+          </button>    	
+		  </label>
+      <label class="item">
+        <button class="button button-block button-positive" type="submit">submit</button>
+      </label>
+    </form>
+		</div>
+  </ion-content>
+</ion-view>

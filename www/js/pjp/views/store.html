@@ -1,0 +1,9 @@
+<ion-view view-title="Store">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="item in storeList" ng-click="storeClick({{item}})">
+        {{item.storeName}} || {{item.address}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

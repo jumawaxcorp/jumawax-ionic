@@ -4,9 +4,22 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+var app = angular.module('starter', [
+  'ionic', 'chart.js', 'ngCordova',
+  'AuthModule', 'HomeModule', 'PJPModule',
+  'LoginMod', 'PJPMod', 'ReportMod', 'ChatMod'
+]);
 
-.run(function($ionicPlatform) {
+app.run(function($ionicPlatform, $state, $rootScope) {
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+    var requireLogin = toState.data.requireLogin;
+
+    if(requireLogin && typeof $rootScope.currentUser === 'undefined'){
+      event.preventDefault();
+      $state.go('login');
+    }
+  });
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -25,12 +38,38 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    controller: 'AppCtrl',
+    data: {
+      requireLogin: true
+    }
   })
+
+
+  .state('app.report', {
+    url: '/report',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/report.html',
+        controller: 'ReportCtrl'
+      }
+    }
+  })  
+  .state('app.chat', {
+    url: '/chat',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/chat.html',
+        controller: 'ChatCtrl'
+      }
+    }
+  })
+
+
+
 
   .state('app.search', {
     url: '/search',
@@ -69,5 +108,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/login');
 });

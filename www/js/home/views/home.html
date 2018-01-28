@@ -1,0 +1,94 @@
+<ion-view view-title="Home">
+  <div class="shadow tabs tabs-icon-top tabs-striped tabs-top tabs-royal tabs-color-light">
+    <a class="tab-item active" ui-sref="app.pjp">
+      <i class="icon ion-home"></i>
+      Journey Plan
+    </a>
+    <a class="tab-item" ui-sref="app.chat">
+      <i class="icon ion-star"></i>
+      Chat
+    </a>
+    <a class="tab-item" ui-sref="app.report">
+      <i class="icon ion-gear-a"></i>
+      Report
+    </a>
+  </div>
+	<ion-content ng-init="loadImages()" class="home-menu has-tabs-top">
+		<ion-slide-box auto-play="true" does-continue="true">
+		  <ion-slide ng-repeat="image in images">
+				<img ng-src="img/banner.jpg" width="100%"/>
+		  </ion-slide>
+		</ion-slide-box>
+
+
+		<div ng-repeat="menu in menus" class="list card card-custom">
+		  <div ng-click="menuClicked('app.{{menu.link}}')">
+			  <div id="cover" class="item item-avatar">
+			    <div class="pad-title">
+				    <h2 style="text-transform: uppercase;">{{menu.name}}</h2>
+				    <p>{{menu.name}}</p>   
+				  </div> 	
+			  </div>
+			    <!-- <div class="test"><h1>Resize me! >>></h1></div> -->
+
+			  <div class="item item-image">
+			    <img ng-src="{{menu.image}}">
+			  </div>
+			  <a class="item item-icon-left assertive">
+			    <i class="icon ion-heart-broken"></i>
+			    {{menu.name}}
+			  </a>		  	
+		  </div>
+
+		</div>
+
+		<div class="list card">
+
+		  <div class="item item-avatar">
+		    <img src="img/store.jpg">
+		    <h2>Pretty Hate Machine</h2>
+		    <p>Nine Inch Nails</p>
+		  </div>
+
+		  <div class="item item-image">
+		    <img src="img/store.jpg">
+		  </div>
+
+		  <a class="item item-icon-left assertive" href="#">
+		    <i class="icon ion-music-note"></i>
+		    Start listening
+		  </a>
+		</div>
+
+
+
+
+
+
+    <div class="row" ng-repeat="image in images" ng-if="$index % 4 === 0">
+      <div class="col col-25" ng-if="$index < images.length">
+      	<a ui-sref="app.pjp">
+          <img ng-src="img/pc.png" width="100%" />
+          <spam>Journey Plan</spam>
+      	</a>
+      </div>
+      <div class="col col-25" ng-if="$index + 1 < images.length">
+      	<a ui-sref="app.search">
+          <img ng-src="img/chat.png" width="100%" />
+          <spam>Chat</spam>
+      	</a>
+      </div>
+      <div class="col col-25" ng-if="$index + 2 < images.length">
+      	<a ui-sref="app.search">
+          <img ng-src="img/report.png" width="100%" />
+          <spam>Report</spam>
+      	</a>
+      </div>
+      <div class="col col-25" ng-if="$index + 3 < images.length">
+      	<a ui-sref="app.search">
+          <img ng-src="{{images[$index + 3].src}}" width="100%" />
+      	</a>
+      </div>
+    </div>
+	</ion-content>
+</ion-view>
