@@ -16,8 +16,10 @@ app.service('LoadingService', function($ionicLoading){
 app.service('GlobalUtil', function($state, $rootScope, $ionicHistory){
 	this.isEmptyObj = function(obj) {
 	    for(var key in obj) {
-	        if(obj.hasOwnProperty(key))
+	        // if(obj.hasOwnProperty(key)){
+	        if("undefined" !== typeof(obj[key])){
 	            return false;
+	        }
 	    }
 	    return true;
 	};

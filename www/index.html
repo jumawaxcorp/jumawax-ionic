@@ -18,6 +18,7 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/app.min.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -28,6 +29,12 @@
     <script src="lib/chart.js/dist/Chart.min.js"></script>
     <script src="lib/angular-chart.js/angular-chart.min.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="lib/moment/min/moment-with-locales.min.js"></script>
+    <script src="lib/angular-moment/angular-moment.min.js"></script>
+    <script src="lib/angular-elastic/elastic.js"></script>
+    <script src="lib/Autolinker.js/dist/Autolinker.min.js"></script>
+    <script src="lib/angular-socket-io/mock/socket-io.js"></script>
+    <script src="lib/angular-socket-io/socket.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -49,6 +56,17 @@
     <script src="js/pjp/controllers/pjp.controller.js"></script>
     <script src="js/pjp/services/pjp.service.js"></script>
 
+    <script src="js/elasti-chat/elastichat.module.js"></script>
+    <script src="js/elasti-chat/controller/main.controller.js"></script>
+    <script src="js/elasti-chat/controller/inbox.controller.js"></script>
+
+    <script src="js/elasti-chat/service/mock.service.js"></script>
+    <script src="js/elasti-chat/service/modals.js"></script>
+    <script src="js/elasti-chat/service/model.js"></script>
+    <script src="js/elasti-chat/service/socket.factory.js"></script>
+    <script src="js/elasti-chat/filter/nl2br.js"></script>
+    <script src="js/elasti-chat/directive/autolinker.js"></script>
+    <script src="js/elasti-chat/directive/img.js"></script>
   </head>
 
   <body ng-app="starter">

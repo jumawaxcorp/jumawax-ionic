@@ -1,6 +1,4 @@
 pjpModule.service('PJPService', function($http, $rootScope, GlobalConstant){
-	console.log($rootScope.currentUser);
-
 	this.getPJPList = function(){
 		return $http({
 			url: GlobalConstant.appProperties.serverAPI + '/journeyplan/list/jsonp/plan?username=R.Kennedy',

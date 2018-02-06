@@ -1,4 +1,4 @@
-input::-webkit-input-placeholder {
+.login-page .item-floating-label input::-webkit-input-placeholder {
     font-size: 18px;
     line-height: 3;
 }
@@ -18,8 +18,8 @@ input::-webkit-input-placeholder {
 .login-page form{
 	margin: 0 10%;
 }
-.login-page .item-floating-label {
-  background-color: #fff;
+.login-page .item-floating-label, .login-page label, .login-page .list {
+  background-color: #fff !important;
 }
 .centered {
 /*  display: flex;
@@ -98,9 +98,9 @@ input::-webkit-input-placeholder {
 
 
 
-.scroll {
+/*.scroll {
   padding: 10px 0 50px !important;
-}
+}*/
 
 .messages {
   display: -webkit-box !important;

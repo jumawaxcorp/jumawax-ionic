@@ -5,7 +5,7 @@ authModule.config(function($stateProvider, $urlRouterProvider){
 
 	.state('login', {
     url: '/login',
-    templateUrl: 'templates/login.html',
+    templateUrl: 'js/auth/views/login.html',
     controller: 'LoginCtrl',
     data: {
       requireLogin: false

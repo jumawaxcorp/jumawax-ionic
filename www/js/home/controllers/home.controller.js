@@ -18,14 +18,14 @@ homeModule.controller('HomeCtrl', function($scope, $state, $timeout, GlobalUtil,
     {
       id: 2, 
       name: "Chat",
-      link: 'chat',
+      link: 'inbox',
       image: "img/chat.jpg"    
     },
     {
       id: 3, 
       name: "Report",
       link: 'report',
-      image: "img/report.jpg"    
+      image: "img/report.jpg"
     }
   ];
 

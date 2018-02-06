@@ -48,7 +48,7 @@ pjpModule.controller('StoreCtrl', function($scope, $state,  $timeout, GlobalUtil
 			});
     }, function(err) {
       // error
-    });
+  });
 
   $scope.storeClick = function(params){
 	  LoadingService.start(GlobalConstant.loadingSpinner.ripple);
@@ -97,11 +97,6 @@ pjpModule.controller('SKUCtrl', function($scope, $state,  $timeout, GlobalUtil, 
 	  catalogueId: LocalStorage.get('catalogId'),
 	  pjpId: LocalStorage.get('pjpId')
   };
-  		console.log('ssssssssssssssssssssssssssssssssssssssssssssssssssssssss');
-  		console.log(localStorage);
-  		LocalStorage.clear();
-  		console.log(localStorage);
-  		console.log('===============================================');
 
 	PJPService.getSKUList(request)
 	.then(function success(response){
