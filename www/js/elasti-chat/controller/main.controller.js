@@ -218,15 +218,4 @@ elastiChat.controller('ElastiChatCtrl', function($scope, $rootScope, $state, $st
 		footerBar.style.height = newFooterHeight + 'px';
 		scroller.style.bottom = newFooterHeight + 'px';
 	});
-
-
-
-
-
-
-
-	SocketFactory.on('init', function(data){
-		$scope.name = data.name;
-		$scope.users = data.users;
-	});
 });
