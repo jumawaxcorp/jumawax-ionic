@@ -1,5 +1,5 @@
 var elastiChat = angular.module('ElastiChatModule', ['ngCordova', 'ngAnimate', 'monospaced.elastic', 'angularMoment', 
-  'btford.socket-io', 'ngSanitize']);
+  'ngSanitize', 'ngStomp']);
 
 elastiChat.run(function($rootScope){
   $rootScope.$on('$stateChangeStart', function(event){

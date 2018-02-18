@@ -1,4 +1,5 @@
-elastiChat.controller('ChatInboxCtrl', function($rootScope, $state, $scope, MockService, SocketFactory, $sanitize){
+elastiChat.controller('ChatInboxCtrl', function($rootScope, $state, $scope, MockService, SocketFactory, $sanitize,
+	$stomp){
 	$scope.toUser = $rootScope.toUser;
 
 	MockService.getUserMessages({
@@ -20,10 +21,23 @@ elastiChat.controller('ChatInboxCtrl', function($rootScope, $state, $scope, Mock
 	};
 
 	$scope.enterChat = function(){
-		join($scope.toUser.username);
 		$state.go('app.elasti-chat');
 	};
 
+	var socket = io.connect('localhost:3000');
+
+	socket.emit('chat message', 'kontol');
+  socket.on('chat message', function(msg){
+  	console.log(msg);
+  });
+  SocketFactory.socketIO.on('init', function(data){
+  	console.log(data);
+  });
+
+	SocketFactory.socketIO.emit('chat message', 'kontol');
+  SocketFactory.socketIO.on('chat message', function(msg){
+  	console.log(msg);
+  });
 
 
 
@@ -31,17 +45,22 @@ elastiChat.controller('ChatInboxCtrl', function($rootScope, $state, $scope, Mock
 
 
 
+  SocketFactory.stomp
+  	.then(function(frame){
+  			console.log('masuk ga anjing');
+  		$stomp.subscribe('/topic/public', function(payload){
+  			var Message = JSON.parse(payload.body);
+  			console.log(message.sender);
+  		}, {
+  			'headers': 'babi luuuuuuuuuuuuuuuuuuu'
+  		});
 
-	$scope.newCustomers = [];
-	$scope.currentCustomer = {};
+	    $stomp.send("/app/chat.addUser", 
+	    	{},
+	      JSON.stringify({sender: 'anjing babi', type: 'JOIN'})
+	    );
+  	}, function(error){
+  		console.log(error);
+  	});
 
-	var join = function(name){
-		SocketFactory.emit('add-customer', name);
-	};
-	SocketFactory.on('notification', function(data){
-		$scope.$apply(function(){
-			$scope.newCustomers.push(data.customer);
-		});
-
-	});
 });

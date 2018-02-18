@@ -12,7 +12,7 @@ app.constant('GlobalConstant', {
 		spiral: 'icon="spiral"'
 	},
 	appProperties: {
-		serverAPI: 'http://localhost:6060/jumawax-web'
+		serverAPI: 'http://localhost:7070/jumawax-web'
 	}
 });
 

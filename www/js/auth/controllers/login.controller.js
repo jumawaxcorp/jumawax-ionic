@@ -18,7 +18,6 @@ $scope.loginData.password = 'sayaagents';
 
     AuthService.login(credentials)
     .then(function success(response){
-      console.log(response.data.msg);
 	    $timeout(function(){
         if(response.data.msg == 'Success'){
           GlobalUtil.assignCurrentUser(response.data);

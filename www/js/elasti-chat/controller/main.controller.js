@@ -103,6 +103,12 @@ elastiChat.controller('ElastiChatCtrl', function($scope, $rootScope, $state, $st
 			text: $scope.input.message
 		};
 
+		SocketFactory.socketIO.emit('elasti-chat:message', message);
+		SocketFactory.socketIO.on('elasti-chat:message', function(data){
+			message = data;
+			console.log('nyampe socket.io');
+		});
+
 		keepKeyboardOpen();
 		$scope.input.message = '';
 
