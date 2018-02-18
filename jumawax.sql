@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 27 Jan 2018 pada 23.54
--- Versi Server: 10.1.24-MariaDB
--- PHP Version: 7.1.6
+-- Generation Time: Feb 18, 2018 at 07:47 PM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -24,7 +22,7 @@ SET time_zone = "+00:00";
 
 DELIMITER $$
 --
--- Fungsi
+-- Functions
 --
 CREATE DEFINER=`priangga`@`localhost` FUNCTION `createuser` (`agent` VARCHAR(255), `username` VARCHAR(255), `password` VARCHAR(255), `role` VARCHAR(255)) RETURNS VARCHAR(255) CHARSET latin1 BEGIN
 DECLARE roleid int;
@@ -79,7 +77,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `account`
+-- Table structure for table `account`
 --
 
 CREATE TABLE `account` (
@@ -90,7 +88,7 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `account`
+-- Dumping data for table `account`
 --
 
 INSERT INTO `account` (`account_num`, `account_name`, `pic_name`, `unsused_field`) VALUES
@@ -101,7 +99,7 @@ INSERT INTO `account` (`account_num`, `account_name`, `pic_name`, `unsused_field
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `address`
+-- Table structure for table `address`
 --
 
 CREATE TABLE `address` (
@@ -115,7 +113,7 @@ CREATE TABLE `address` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `address`
+-- Dumping data for table `address`
 --
 
 INSERT INTO `address` (`address_seq`, `account_num`, `address_1`, `address_2`, `zip_code`, `latitude`, `longitude`) VALUES
@@ -137,7 +135,7 @@ INSERT INTO `address` (`address_seq`, `account_num`, `address_1`, `address_2`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contact`
+-- Table structure for table `contact`
 --
 
 CREATE TABLE `contact` (
@@ -150,7 +148,7 @@ CREATE TABLE `contact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `contact`
+-- Dumping data for table `contact`
 --
 
 INSERT INTO `contact` (`contact_seq`, `account_num`, `store_name`, `contact_name`, `phone_num`, `email`) VALUES
@@ -173,7 +171,7 @@ INSERT INTO `contact` (`contact_seq`, `account_num`, `store_name`, `contact_name
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gorup`
+-- Table structure for table `gorup`
 --
 
 CREATE TABLE `gorup` (
@@ -184,7 +182,7 @@ CREATE TABLE `gorup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `gorup`
+-- Dumping data for table `gorup`
 --
 
 INSERT INTO `gorup` (`group_id`, `account_num`, `group_name`, `unused_field`) VALUES
@@ -201,7 +199,7 @@ INSERT INTO `gorup` (`group_id`, `account_num`, `group_name`, `unused_field`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `image`
+-- Table structure for table `image`
 --
 
 CREATE TABLE `image` (
@@ -210,7 +208,7 @@ CREATE TABLE `image` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `image`
+-- Dumping data for table `image`
 --
 
 INSERT INTO `image` (`id`, `image`) VALUES
@@ -223,7 +221,7 @@ INSERT INTO `image` (`id`, `image`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `journeyplan`
+-- Table structure for table `journeyplan`
 --
 
 CREATE TABLE `journeyplan` (
@@ -235,7 +233,7 @@ CREATE TABLE `journeyplan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `journeyplan`
+-- Dumping data for table `journeyplan`
 --
 
 INSERT INTO `journeyplan` (`pjp_id`, `submit_date`, `user_agent`, `pjp_owner`, `status`) VALUES
@@ -246,7 +244,7 @@ INSERT INTO `journeyplan` (`pjp_id`, `submit_date`, `user_agent`, `pjp_owner`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `journeyplanbystore`
+-- Table structure for table `journeyplanbystore`
 --
 
 CREATE TABLE `journeyplanbystore` (
@@ -257,7 +255,7 @@ CREATE TABLE `journeyplanbystore` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `journeyplanbystore`
+-- Dumping data for table `journeyplanbystore`
 --
 
 INSERT INTO `journeyplanbystore` (`pjp_id`, `store_code`, `notes`, `end_dat`) VALUES
@@ -275,7 +273,7 @@ INSERT INTO `journeyplanbystore` (`pjp_id`, `store_code`, `notes`, `end_dat`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `oos`
+-- Table structure for table `oos`
 --
 
 CREATE TABLE `oos` (
@@ -288,7 +286,7 @@ CREATE TABLE `oos` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `oospromo`
+-- Table structure for table `oospromo`
 --
 
 CREATE TABLE `oospromo` (
@@ -301,7 +299,7 @@ CREATE TABLE `oospromo` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `oospromostoreunit`
+-- Table structure for table `oospromostoreunit`
 --
 
 CREATE TABLE `oospromostoreunit` (
@@ -313,7 +311,7 @@ CREATE TABLE `oospromostoreunit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `oospromostoreunit`
+-- Dumping data for table `oospromostoreunit`
 --
 
 INSERT INTO `oospromostoreunit` (`pjp_id`, `store_code`, `sku_id`, `oos_event_promo_total`, `collect_dtm`) VALUES
@@ -384,7 +382,7 @@ INSERT INTO `oospromostoreunit` (`pjp_id`, `store_code`, `sku_id`, `oos_event_pr
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `oosstoreunit`
+-- Table structure for table `oosstoreunit`
 --
 
 CREATE TABLE `oosstoreunit` (
@@ -397,7 +395,7 @@ CREATE TABLE `oosstoreunit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `oosstoreunit`
+-- Dumping data for table `oosstoreunit`
 --
 
 INSERT INTO `oosstoreunit` (`pjp_id`, `store_code`, `sku_id`, `oos_event`, `collectdtm`, `partial_oos_event`) VALUES
@@ -411,7 +409,7 @@ INSERT INTO `oosstoreunit` (`pjp_id`, `store_code`, `sku_id`, `oos_event`, `coll
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `productcatalogue`
+-- Table structure for table `productcatalogue`
 --
 
 CREATE TABLE `productcatalogue` (
@@ -420,7 +418,7 @@ CREATE TABLE `productcatalogue` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `productcatalogue`
+-- Dumping data for table `productcatalogue`
 --
 
 INSERT INTO `productcatalogue` (`catalogue_name`, `catalogue_id`) VALUES
@@ -432,7 +430,6 @@ INSERT INTO `productcatalogue` (`catalogue_name`, `catalogue_id`) VALUES
 
 --
 -- Stand-in structure for view `pvpjpstore`
--- (Lihat di bawah untuk tampilan aktual)
 --
 CREATE TABLE `pvpjpstore` (
 `id` int(11)
@@ -450,7 +447,6 @@ CREATE TABLE `pvpjpstore` (
 
 --
 -- Stand-in structure for view `pvskustore`
--- (Lihat di bawah untuk tampilan aktual)
 --
 CREATE TABLE `pvskustore` (
 `store_id` varchar(255)
@@ -463,7 +459,7 @@ CREATE TABLE `pvskustore` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `region`
+-- Table structure for table `region`
 --
 
 CREATE TABLE `region` (
@@ -474,7 +470,7 @@ CREATE TABLE `region` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `region`
+-- Dumping data for table `region`
 --
 
 INSERT INTO `region` (`region_id`, `zone_id`, `region`, `unused_field`) VALUES
@@ -486,7 +482,7 @@ INSERT INTO `region` (`region_id`, `zone_id`, `region`, `unused_field`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE `role` (
@@ -497,7 +493,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`role_id`, `role`, `role_description`, `unused_field`) VALUES
@@ -507,7 +503,7 @@ INSERT INTO `role` (`role_id`, `role`, `role_description`, `unused_field`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sku`
+-- Table structure for table `sku`
 --
 
 CREATE TABLE `sku` (
@@ -517,7 +513,7 @@ CREATE TABLE `sku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `sku`
+-- Dumping data for table `sku`
 --
 
 INSERT INTO `sku` (`sku_id`, `catalogue_id`, `sku_name`) VALUES
@@ -542,7 +538,7 @@ INSERT INTO `sku` (`sku_id`, `catalogue_id`, `sku_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `skubyplan`
+-- Table structure for table `skubyplan`
 --
 
 CREATE TABLE `skubyplan` (
@@ -553,7 +549,7 @@ CREATE TABLE `skubyplan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `skubyplan`
+-- Dumping data for table `skubyplan`
 --
 
 INSERT INTO `skubyplan` (`pjp_id`, `sku_id`, `status`, `store_id`) VALUES
@@ -580,7 +576,7 @@ INSERT INTO `skubyplan` (`pjp_id`, `sku_id`, `status`, `store_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `skubystore`
+-- Table structure for table `skubystore`
 --
 
 CREATE TABLE `skubystore` (
@@ -590,7 +586,7 @@ CREATE TABLE `skubystore` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `skubystore`
+-- Dumping data for table `skubystore`
 --
 
 INSERT INTO `skubystore` (`store_id`, `catalogue_id`, `sku_id`) VALUES
@@ -618,7 +614,7 @@ INSERT INTO `skubystore` (`store_id`, `catalogue_id`, `sku_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `store`
+-- Table structure for table `store`
 --
 
 CREATE TABLE `store` (
@@ -631,7 +627,7 @@ CREATE TABLE `store` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `store`
+-- Dumping data for table `store`
 --
 
 INSERT INTO `store` (`store_code`, `account_num`, `group_id`, `contact_seq`, `address_seq`, `region_id`) VALUES
@@ -653,7 +649,7 @@ INSERT INTO `store` (`store_code`, `account_num`, `group_id`, `contact_seq`, `ad
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `teritory`
+-- Table structure for table `teritory`
 --
 
 CREATE TABLE `teritory` (
@@ -663,7 +659,7 @@ CREATE TABLE `teritory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `teritory`
+-- Dumping data for table `teritory`
 --
 
 INSERT INTO `teritory` (`id`, `teritory`, `parent_id`) VALUES
@@ -684,7 +680,7 @@ INSERT INTO `teritory` (`id`, `teritory`, `parent_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -696,7 +692,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`username`, `password`, `agent_name`, `role_id`, `access_role`) VALUES
@@ -707,7 +703,7 @@ INSERT INTO `user` (`username`, `password`, `agent_name`, `role_id`, `access_rol
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `zone`
+-- Table structure for table `zone`
 --
 
 CREATE TABLE `zone` (
@@ -718,7 +714,7 @@ CREATE TABLE `zone` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `zone`
+-- Dumping data for table `zone`
 --
 
 INSERT INTO `zone` (`zone_id`, `zone_name`, `unused_field`, `unused_field2`) VALUES
@@ -729,7 +725,7 @@ INSERT INTO `zone` (`zone_id`, `zone_name`, `unused_field`, `unused_field2`) VAL
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `pvpjpstore`
+-- Structure for view `pvpjpstore`
 --
 DROP TABLE IF EXISTS `pvpjpstore`;
 
@@ -738,7 +734,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`priangga`@`localhost` SQL SECURITY DEFINER V
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `pvskustore`
+-- Structure for view `pvskustore`
 --
 DROP TABLE IF EXISTS `pvskustore`;
 
@@ -808,8 +804,7 @@ ALTER TABLE `region`
 -- AUTO_INCREMENT for table `zone`
 --
 ALTER TABLE `zone`
-  MODIFY `zone_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;
-
+  MODIFY `zone_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
