@@ -31,15 +31,19 @@ pjpModule.controller('StoreCtrl', function($scope, $state,  $timeout, GlobalUtil
 	$cordovaGeolocation
     .getCurrentPosition(posOptions)
     .then(function (position) {
-      var lat  = position.coords.latitude
-      var long = position.coords.longitude
+      // var lat  = position.coords.latitude;
+      // var long = position.coords.longitude;
+
+      var lat  = -6.2610343;
+      var long = 107.0581345;
+      
 
       request = {
 				planid: $stateParams.planId,
 				latitude: lat,
 				longitude: long
 		  };
-
+		  console.log(request);
 			PJPService.getStoreList(request)
 			.then(function success(response){
 				$scope.storeList = response.data;

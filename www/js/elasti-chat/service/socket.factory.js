@@ -18,7 +18,8 @@ elastiChat.factory('SocketFactory', function($rootScope, $stomp){
           }
         });
       })
-    }
+    },
+    socket: socket
   };
 
   var stomp = $stomp.connect('http://localhost:8090/ws');

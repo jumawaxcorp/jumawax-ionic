@@ -18,25 +18,39 @@ $scope.loginData.password = 'sayaagents';
 
     AuthService.login(credentials)
     .then(function success(response){
-	    $timeout(function(){
-        if(response.data.msg == 'Success'){
-          GlobalUtil.assignCurrentUser(response.data);
-          LoadingService.stop();
-          $state.go('app.home');
-        } else {
-          LoadingService.stop();
-          $ionicPopup.alert({
-             title: 'Error',
-             template: response.data.msg
-          });
-        };
-	    }, 1000);
+      loginSuccess(response);
     }, function error(response){
-    	LoadingService.stop();
-      $ionicPopup.alert({
-         title: 'Error',
-         template: 'Link API atau koneksi bermasalah'
-      });
+      bypassAuth();
     });
+  };
+
+  var loginSuccess = function(response){
+    $timeout(function(){
+      if(response.data.msg == 'Success'){
+        GlobalUtil.assignCurrentUser(response.data);
+        LoadingService.stop();
+        $state.go('app.home');
+      } else {
+        LoadingService.stop();
+        $ionicPopup.alert({
+           title: 'Error',
+           template: response.data.msg
+        });
+      }
+    }, 1000);
+  };
+
+  var bypassAuth = function(){
+    GlobalUtil.assignCurrentUser(credentials);
+    LoadingService.stop();
+    var alertPopup = $ionicPopup.alert({
+       title: 'Error',
+       template: 'Link API atau koneksi bermasalah, login dengan bypass otentikasi!'
+    });
+
+    $timeout(function(){
+      alertPopup.close();
+      $state.go('app.home');
+    }, 1500);
   };
 });

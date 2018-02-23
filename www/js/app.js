@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('starter', [
-  'ionic', 'chart.js', 'ngCordova',
+  'ionic', 'chart.js', 'ngCordova', 'ngStorage',
   'AuthModule', 'HomeModule', 'PJPModule', 'ElastiChatModule',
   'LoginMod', 'PJPMod', 'ReportMod', 'ChatMod'
 ]);
