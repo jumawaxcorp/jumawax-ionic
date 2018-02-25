@@ -1,11 +1,12 @@
 authModule.controller('LoginCtrl', function($scope, $state, LoadingService, GlobalUtil, GlobalConstant, AuthService, $rootScope,
   $ionicPopup, $timeout){
+  var nextState = 'app.home',
+      bypassErrorMsg = 'Link API atau koneksi bermasalah, login dengan bypass otentikasi!';
   
-  $scope.loginData = {};
   var credentials = {};
-
-$scope.loginData.username = 'R.Kennedy';
-$scope.loginData.password = 'sayaagents';
+  $scope.loginData = {};
+  $scope.loginData.username = 'R.Kennedy';
+  $scope.loginData.password = 'sayaagents';
 
 	$scope.doLogin = function() {
     LoadingService.start(GlobalConstant.loadingSpinner.ripple);
@@ -29,7 +30,7 @@ $scope.loginData.password = 'sayaagents';
       if(response.data.msg == 'Success'){
         GlobalUtil.assignCurrentUser(response.data);
         LoadingService.stop();
-        $state.go('app.home');
+        $state.go(nextState);
       } else {
         LoadingService.stop();
         $ionicPopup.alert({
@@ -45,12 +46,12 @@ $scope.loginData.password = 'sayaagents';
     LoadingService.stop();
     var alertPopup = $ionicPopup.alert({
        title: 'Error',
-       template: 'Link API atau koneksi bermasalah, login dengan bypass otentikasi!'
+       template: bypassErrorMsg
     });
 
     $timeout(function(){
       alertPopup.close();
-      $state.go('app.home');
+      $state.go(nextState);
     }, 1500);
   };
 });

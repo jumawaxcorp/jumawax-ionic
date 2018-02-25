@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2018 at 07:47 PM
+-- Generation Time: Feb 25, 2018 at 08:50 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -84,17 +84,29 @@ CREATE TABLE `account` (
   `account_num` varchar(255) NOT NULL,
   `account_name` varchar(255) NOT NULL,
   `pic_name` varchar(255) NOT NULL,
-  `unsused_field` int(11) NOT NULL
+  `sub_channel_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`account_num`, `account_name`, `pic_name`, `unsused_field`) VALUES
+INSERT INTO `account` (`account_num`, `account_name`, `pic_name`, `sub_channel_id`) VALUES
 ('0000121', 'Alfa Corporation', 'o0OObusO0o', 0),
 ('0000122', 'Indomart Corporation', 'Hadi', 0),
 ('0000123', 'Carefour and Friend', 'Simo', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account_vers`
+--
+
+CREATE TABLE `account_vers` (
+  `id` int(11) DEFAULT NULL,
+  `account_name` varchar(20) DEFAULT NULL,
+  `sub_channel_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -131,6 +143,27 @@ INSERT INTO `address` (`address_seq`, `account_num`, `address_1`, `address_2`, `
 (5, '0000122', 'Jalan Raya Cimuning No. 1', '', 16969, 34.052235, -118.243683),
 (6, '0000122', 'Jalan Raya Saharjo Kav 2', '', 16969, 34.052235, -118.243683),
 (1, '0000123', 'Jalan MT Haryono', '', 16969, 34.052235, -118.243683);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `channel`
+--
+
+CREATE TABLE `channel` (
+  `id` int(11) DEFAULT NULL,
+  `channel` varchar(20) DEFAULT NULL,
+  `unused_field` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `channel`
+--
+
+INSERT INTO `channel` (`id`, `channel`, `unused_field`) VALUES
+(203579, 'MINIMARKET', 0),
+(303579, 'SUPERMARKET', 0),
+(403579, 'HYPERMARKET', 0);
 
 -- --------------------------------------------------------
 
@@ -238,7 +271,7 @@ CREATE TABLE `journeyplan` (
 
 INSERT INTO `journeyplan` (`pjp_id`, `submit_date`, `user_agent`, `pjp_owner`, `status`) VALUES
 (125001, '2017-05-25 15:35:02', 'R.Kennedy', 'J.Bush', 'SUBMITTED'),
-(125002, '2017-05-30 15:35:02', 'R.Kennedy', 'J.Bush', 'SUBMITTED'),
+(125002, '2018-02-25 07:11:58', 'R.Kennedy', 'J.Bush', 'ONPROGRESS'),
 (125003, '2017-05-27 16:43:53', 'priangga', 'karanda', 'SUBMITTED');
 
 -- --------------------------------------------------------
@@ -405,6 +438,25 @@ INSERT INTO `oosstoreunit` (`pjp_id`, `store_code`, `sku_id`, `oos_event`, `coll
 (125001, 'ALF1411', 7777710, 1, '2018-01-28 02:03:16', 1),
 (125001, 'ALF1411', 7777710, 1, '2018-01-28 02:22:47', 1),
 (125001, 'ALF1411', 7777710, 1, '2018-01-28 02:27:34', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ownership`
+--
+
+CREATE TABLE `ownership` (
+  `id` int(11) NOT NULL,
+  `ownership` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ownership`
+--
+
+INSERT INTO `ownership` (`id`, `ownership`) VALUES
+(11, 'local'),
+(21, 'foreign');
 
 -- --------------------------------------------------------
 
@@ -623,28 +675,42 @@ CREATE TABLE `store` (
   `group_id` int(11) NOT NULL,
   `contact_seq` int(11) NOT NULL,
   `address_seq` int(11) NOT NULL,
-  `region_id` int(11) NOT NULL
+  `region_id` int(11) NOT NULL,
+  `channel_id` int(11) DEFAULT NULL,
+  `ownership_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `store`
 --
 
-INSERT INTO `store` (`store_code`, `account_num`, `group_id`, `contact_seq`, `address_seq`, `region_id`) VALUES
-('ALE14114', '0000121', 2, 4, 4, 2),
-('ALE14115', '0000121', 2, 5, 5, 2),
-('ALF1411', '0000121', 1, 1, 1, 2),
-('ALF14112', '0000121', 1, 2, 2, 2),
-('ALF14113', '0000121', 1, 3, 3, 2),
-('ALM14116', '0000121', 3, 6, 6, 2),
-('CRF16111', '0000123', 8, 1, 1, 2),
-('IDM15111', '0000122', 5, 1, 1, 2),
-('IDM15112', '0000122', 5, 2, 2, 2),
-('IDM15113', '0000122', 5, 3, 3, 2),
-('IDS15116', '0000122', 7, 6, 6, 2),
-('IDT15114', '0000122', 6, 4, 4, 2),
-('IDT15115', '0000122', 6, 5, 5, 2),
-('LAW14117', '0000121', 4, 7, 7, 2);
+INSERT INTO `store` (`store_code`, `account_num`, `group_id`, `contact_seq`, `address_seq`, `region_id`, `channel_id`, `ownership_id`) VALUES
+('ALE14114', '0000121', 2, 4, 4, 2, NULL, NULL),
+('ALE14115', '0000121', 2, 5, 5, 2, NULL, NULL),
+('ALF1411', '0000121', 1, 1, 1, 2, NULL, NULL),
+('ALF14112', '0000121', 1, 2, 2, 2, NULL, NULL),
+('ALF14113', '0000121', 1, 3, 3, 2, NULL, NULL),
+('ALM14116', '0000121', 3, 6, 6, 2, NULL, NULL),
+('CRF16111', '0000123', 8, 1, 1, 2, NULL, NULL),
+('IDM15111', '0000122', 5, 1, 1, 2, NULL, NULL),
+('IDM15112', '0000122', 5, 2, 2, 2, NULL, NULL),
+('IDM15113', '0000122', 5, 3, 3, 2, NULL, NULL),
+('IDS15116', '0000122', 7, 6, 6, 2, NULL, NULL),
+('IDT15114', '0000122', 6, 4, 4, 2, NULL, NULL),
+('IDT15115', '0000122', 6, 5, 5, 2, NULL, NULL),
+('LAW14117', '0000121', 4, 7, 7, 2, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sub_channel`
+--
+
+CREATE TABLE `sub_channel` (
+  `id` int(11) DEFAULT NULL,
+  `sub_channel` varchar(20) DEFAULT NULL,
+  `channel_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 

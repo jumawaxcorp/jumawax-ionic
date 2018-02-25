@@ -1,8 +1,7 @@
-var pjpModule = angular.module('PJPModule', []);
+var pjpModule = angular.module('PJPModule', ['ionic-modal-select']);
 
 pjpModule.config(function($stateProvider, $urlRouterProvider){
 	$stateProvider
-
   .state('app.pjp', {
     url: '/pjp',
     views: {

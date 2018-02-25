@@ -22,45 +22,75 @@ pjpModule.controller('PJPCtrl', function($scope, $state, $timeout, GlobalUtil, L
 });
 
 pjpModule.controller('StoreCtrl', function($scope, $state,  $timeout, GlobalUtil, LoadingService, GlobalConstant,
-	$stateParams, $cordovaGeolocation, LocalStorage,
+	$stateParams, $cordovaGeolocation, LocalStorage, $ionicPopup, $ionicModal, MapService,
 	PJPService){
   GlobalUtil.goBackPJPHandler();
-  var request;
-  var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  var request = {};  
+  $scope.pjpId = LocalStorage.get('pjpId');
 
-	$cordovaGeolocation
-    .getCurrentPosition(posOptions)
-    .then(function (position) {
-      // var lat  = position.coords.latitude;
-      // var long = position.coords.longitude;
-
-      var lat  = -6.2610343;
-      var long = 107.0581345;
-      
-
+  MapService.getPosition()
+  .then(function(location){
       request = {
 				planid: $stateParams.planId,
-				latitude: lat,
-				longitude: long
+				latitude: location.lat,
+				longitude: location.long
 		  };
-		  console.log(request);
+
 			PJPService.getStoreList(request)
 			.then(function success(response){
 				$scope.storeList = response.data;
 			}, function error(response){
 
 			});
-    }, function(err) {
-      // error
   });
-
+	
   $scope.storeClick = function(params){
 	  LoadingService.start(GlobalConstant.loadingSpinner.ripple);
-  	$timeout(function(){
-			LocalStorage.set('storeId', params.storeCode);
+	  if(params.storeCode == 'ALE14114'){
     	LoadingService.stop();
-			$state.go('app.catalog');
-    }, 1000);
+	    var alertPopup = $ionicPopup.alert({
+	       title: 'Pemberitahuan',
+	       template: 'Jarak Anda dengan lokasi lebih dari 5 meter.'
+	    });
+	  } else {
+	  	$timeout(function(){
+				LocalStorage.set('storeId', params.storeCode);
+	    	LoadingService.stop();
+				$state.go('app.catalog');
+	    }, 1000);
+
+	  }
+  };
+
+  $ionicModal.fromTemplateUrl('js/pjp/views/store.map.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.storeLocation = function(event){
+  	event.stopPropagation();
+  	$scope.modal.show();
+
+  	MapService.getDirection('store-map', 'DRIVING')
+  	.then(function(map){
+  		$scope.map = map;
+  	});
+  };
+
+  $scope.refreshLocation = function(){
+	  LoadingService.start(GlobalConstant.loadingSpinner.ripple);
+  	MapService.getDirection('store-map', 'DRIVING')
+  	.then(function(map){
+  		$scope.map = map;
+  		$timeout(function(){
+  			LoadingService.stop();
+  		}, 500);
+  	});
+  };
+
+  $scope.closeMap = function(){
+  	$scope.modal.hide();
   };
 });
 
@@ -68,7 +98,8 @@ pjpModule.controller('CatalogCtrl', function($scope, $state,  $timeout, GlobalUt
 	$stateParams, LocalStorage,
 	PJPService){
   GlobalUtil.goBackPJPHandler();
-
+  $scope.breadcrumb = {};
+  $scope.breadcrumb.pjpId = LocalStorage.get('pjpId');
   var request = {
 
   };
@@ -95,6 +126,8 @@ pjpModule.controller('SKUCtrl', function($scope, $state,  $timeout, GlobalUtil, 
 	$stateParams, LocalStorage,
 	PJPService){
   GlobalUtil.goBackPJPHandler();
+  $scope.breadcrumb = {};
+  $scope.breadcrumb.pjpId = LocalStorage.get('pjpId');
 
   var request = {
 	  storeId: LocalStorage.get('storeId'),
@@ -119,7 +152,30 @@ pjpModule.controller('SKUCtrl', function($scope, $state,  $timeout, GlobalUtil, 
 });
 
 pjpModule.controller('PJPFormCtrl', function($scope, $state,  $timeout, GlobalUtil, LoadingService, GlobalConstant,
-	$stateParams, LocalStorage,
+	$stateParams, LocalStorage, $ionicPopup,
 	PJPService){
+  var optionBox;
 
+  $scope.showOption = function(){
+    optionBox = $ionicPopup.alert({
+      title: 'Pilih Opsi',
+      templateUrl: 'templates/select.box.html',
+      scope: $scope,
+      okText: 'Cancel'
+    });
+    $scope.options = ["Ya", "Tidak"];
+  };
+
+  $scope.optionSelected = function(item){
+    $scope.itemAvailable = item;
+    optionBox.close();
+  };
+
+  $scope.getPicture = function(){
+    $ionicPopup.alert({
+      title: 'Ambil Gambar',
+      templateUrl: 'templates/image.picker.html',
+      okText: 'Cancel'
+    });
+  };
 });

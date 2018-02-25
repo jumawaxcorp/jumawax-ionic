@@ -1,5 +1,9 @@
 <ion-view view-title="SKU">
   <ion-content>
+    <div class="text-center" style="padding: 10px;">
+	  	<h4>Journey Plan No.{{breadcrumb.pjpId}}</h4>
+	  	<p>Nama Store | Nama Katalog</p>
+	  </div>
     <ion-list>
       <ion-item ng-repeat="item in skuList" ui-sref="app.pjp-form">
         {{item.skuName}}

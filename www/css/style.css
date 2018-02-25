@@ -1,6 +1,17 @@
+
+
+.transparent, .transparent label {
+  background: transparent !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
 .login-page .item-floating-label input::-webkit-input-placeholder {
     font-size: 18px;
     line-height: 3;
+    color: white;
 }
 .spinner svg {
   width: 20% !important;
@@ -13,13 +24,42 @@
 }
 /* Empty. Add your own CSS if you like */
 .login-page {
-	background-color: green;
+	background-image: url(../img/login.jpg);
+  background-size:cover;
 }
 .login-page form{
 	margin: 0 10%;
 }
 .login-page .item-floating-label, .login-page label, .login-page .list {
-  background-color: #fff !important;
+/*  background-color: transparent !important;*/
+  background-color: rgba(0, 0, 0, 0.5);
+  /*border: 1px solid #333;*/
+  border: none;
+}
+
+.login-page input::placeholder{
+  color: #CCCCCC !important;
+  text-align: center;
+}
+
+.login-page input {
+  text-align: center;
+  color: #CCCCCC !important;
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
+.login-box {
+  padding-right: 20px !important;
+}
+
+.login-page .input-label {
+  color: #fff !important;
+}
+
+.button-login {
+  color: white !important;
+  border: 1px solid white !important;
+  border-radius: 0 !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
 }
 .centered {
 /*  display: flex;
@@ -184,6 +224,15 @@
   max-width: 240px !important;
 }
 
+.on-progress-pjp{
+  /*color: #36CC36;*/
+  color: yellow;
+  font-size: 64px;
+}
+
+.ion-location {
+  color: red;
+}
 
 
 
@@ -192,13 +241,23 @@
 
 
 
+#store-map { 
+    height: inherit;
+}
+
+.image-picker img {
+  width: 100%;
+}
 
 
 
 
+.image-picker .ng-hide-add,
+.image-picker .ng-hide-remove {
+  transition: all linear 1s;
+  opacity: 1;
+}
 
-
-
-
-
-
+.ng-hide {
+  opacity: 0;
+}

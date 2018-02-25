@@ -1,9 +1,52 @@
 <ion-view view-title="Store">
-  <ion-content>
+  <ion-content class="has-header">
+
+  	<div class="text-center" style="padding: 10px;">
+	  	<h4>Journey Plan No.{{pjpId}}</h4>
+			<label class="item item-input" style="padding: 0 0 0 10px;">
+		    <input type="text" ng-model="storeSearch" placeholder="Cari store...">
+		    <button class="button button-balanced shadow" style="border-radius: 0;">Cari</button>
+		  </label>
+  	</div>
     <ion-list>
-      <ion-item ng-repeat="item in storeList" ng-click="storeClick({{item}})">
-        {{item.storeName}} || {{item.address}}
+      <ion-item class="item item-icon-left" ng-repeat="item in storeList | filter: storeSearch" 
+      ng-click="storeClick({{item}})">
+	      <i class="icon ion-location" style="text-shadow: 2px 2px 2px #000;" ng-click="storeLocation($event)"
+	      ng-class="{true: 'custom-icon', false: ''}[pjp.planId == 125001]"></i>
+	      <div style="width: 70%; margin: 0; padding: 0; float: left;">
+	      	<h2>{{item.storeName}}</h2>
+	      	<p>{{item.address}}</p>
+				</div>
+				<span class="item-note" style="position: absolute; bottom: 16px; right: 10px;">
+					<i class="ion-model-s"> Bekasi</i>
+		    </span>
       </ion-item>
     </ion-list>
+
+
+
+
+
+<script>
+
+  var map, infoWindow;
+  function initMap() {
+    var pos = {
+      lat: -6.2610343,
+      lng: 107.0581345
+    };
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 6
+    });
+    infoWindow = new google.maps.InfoWindow;
+
+        infoWindow.setPosition(pos);
+    infoWindow.setContent('Location found.');
+    infoWindow.open(map);
+    map.setCenter(pos);
+  }
+</script>
   </ion-content>
 </ion-view>
