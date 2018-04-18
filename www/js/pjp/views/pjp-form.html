@@ -4,7 +4,7 @@
 		<div class="list">
       <label class="item item-input item-floating-label">
 		    <span class="input-label">Apakah Item Tersedia</span>
-		    <input ng-model="itemAvailable" type="text" placeholder="Apakah Item Tersedia" ng-click="showOption()">
+		    <input ng-model="itemAvailable" ng-readonly="true" type="text" placeholder="Apakah Item Tersedia" ng-click="showOption()">
 		  </label>
 		  <div class="item item-avatar image-picker" ng-show="itemAvailable == 'Ya'">
 		    <img src="img/camera.png" ng-click="getPicture()">

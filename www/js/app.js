@@ -10,7 +10,8 @@ var app = angular.module('starter', [
   'LoginMod', 'PJPMod', 'ReportMod', 'ChatMod'
 ]);
 
-app.run(function($ionicPlatform, $state, $rootScope) {
+app.run(function($ionicPlatform, $state, $rootScope, $location) {
+  console.log($location.path());
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     var requireLogin = toState.data.requireLogin;
 
@@ -19,6 +20,15 @@ app.run(function($ionicPlatform, $state, $rootScope) {
       $state.go('login');
     }
   });
+
+
+  // $ionicPlatform.registerBackButtonAction(function(e){
+  //   if($location.path() === "/app/home" || $location.path() === "app/home"){
+      
+  //     alert('gerak brrooooooooooooooo');
+      
+  //   }
+  // }, 101);
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
