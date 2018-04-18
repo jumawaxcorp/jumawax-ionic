@@ -1,0 +1,20 @@
+<ion-view view-title="PJP Form">
+  <ion-content>
+		<form ng-submit="submitForm()">
+		<div class="list">
+      <label class="item item-input item-floating-label">
+		    <span class="input-label">Apakah Item Tersedia</span>
+		    <input ng-model="itemAvailable" ng-readonly="true" type="text" placeholder="Apakah Item Tersedia" ng-click="showOption()">
+		  </label>
+		  <div class="item item-avatar image-picker" ng-show="itemAvailable == 'Ya'">
+		    <img src="img/camera.png" ng-click="getPicture()">
+		    <h2>Ambil gambar produk</h2>
+		    <p>foto atau ambil dari gallery</p>
+		  </div>
+      <label class="item">
+        <button class="button button-block button-positive" type="submit">submit</button>
+      </label>
+		</div>
+    </form>
+  </ion-content>
+</ion-view>

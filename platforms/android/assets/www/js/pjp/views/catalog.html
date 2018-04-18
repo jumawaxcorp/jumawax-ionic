@@ -1,0 +1,15 @@
+<ion-view view-title="Katalog">
+  <ion-content>
+    <div class="text-center" style="padding: 10px;">
+	  	<h4>Journey Plan No.{{breadcrumb.pjpId}}</h4>
+	  	<p>Nama Store</p>
+	  </div>
+    <ion-list>
+      <ion-item class="item item-icon-left item-icon-right" ng-repeat="item in catalogList" ng-click="catalogClick({{item}})">
+      	<i class="icon ion-briefcase"
+	      ng-class="{true: 'custom-icon', false: ''}[pjp.planId == 125001]"></i>
+	      <h2>{{item.catalogueName}}</h2>        
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

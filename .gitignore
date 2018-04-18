@@ -21,9 +21,7 @@ coverage/
 dist/
 node_modules/
 tmp/
-temp/
-platforms/
-plugins/
+temp/s
 plugins/android.json
 plugins/ios.json
 $RECYCLE.BIN/

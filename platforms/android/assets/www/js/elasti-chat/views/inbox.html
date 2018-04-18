@@ -1,0 +1,15 @@
+<ion-view view-title="Chat">
+	<ion-content class="has-header">
+	  <div class="list">
+	    <a id="inbox" class="item item-avatar" ng-click="enterChat()" style="width: 100%;">
+	      <!-- <img src="/img/malih.jpg"> -->
+	      <img src="{{toUser.pic}}">
+	      <h2>{{toUser.username}}</h2>
+	      <p style="float: left; width: 90%;">{{lastMessage.text}}</p>
+	      <div hidden="true" class="inbox-notif" style="float: right; width: 10%; text-align: center;">
+		      <div style="width:20px; height: 20px; background-color: red; border-radius: 20px; float: right; line-height: 18px;">1</div>	
+	      </div>
+	    </a>
+	  </div>	
+	</ion-content>
+</ion-view>

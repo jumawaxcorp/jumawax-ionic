@@ -1,0 +1,24 @@
+<ion-view view-title="Journey Plan">
+  <ion-content>
+  	<div class="text-center" style="padding: 10px;">
+	  	<h4>Daftar Journey Plan</h4>
+  	</div>
+
+    <ion-list>
+      <ion-item class="item item-icon-left item-icon-right" ng-repeat="pjp in pjpList" ng-click="pjpClick({{pjp}})">
+		      <i class="icon ion-briefcase"
+		      ng-class="{true: 'on-progress-pjp', false: ''}[pjp.status == 'ONPROGRESS' ]"></i>
+		      <h2>Journey Plan No.{{pjp.planId}}</h2>
+		      <p>Per tanggal : {{pjp.submitDate}}</p>
+					<i class="icon ion-chevron-right"></i>
+      </ion-item>
+      <ion-item class="item item-icon-left item-icon-right">
+		      <i class="icon ion-briefcase"
+		      ng-class="{true: 'custom-icon', false: ''}[pjp.planId == 125001]"></i>
+		      <h2>Journey Plan No.{{pjp.planId}}</h2>
+		      <p>Per tanggal : {{pjp.submitDate}}</p>
+					<i class="icon ion-chevron-right"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
